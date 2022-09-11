@@ -37,72 +37,73 @@
     </tbody>
     </table>
     <hr />
-   
-  <div id="vis1" class="container"></div>
+  
+
+<div id="vis1" class="container"></div>
       <script type='text/javascript'>
-         var yourVlSpec =  {      
+         var yourVlSpec =  {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "data": {
-    "url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t1_without_traffic.csv"
+    "url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t1_without_data.csv"
   },
-  "title": {"text": "Test point 1", "anchor": "middle"},
+  "title": {"text": "Test point 1 (No traffic)", "anchor": "middle"},
   "transform": [{
-   "filter": "datum.Bytes > 3800"&& "datum.Bytes < 12000"
+   "filter": "datum.Bytes > 3800"
    }],
   "mark": "circle",
   "width": 1200,
   "height": 500,
   "encoding": {
-    "x": {"field": "Bytes","type": "quantitative","scale": {"domain": [3800, 12000]}},
- "y": {
-         
-            "field": "RMSE","type": "quantitative"
-          },
-     "size": {"aggregate": "count"},
+    "x": {
+      "field": "Bytes",
+      "type": "quantitative",
+      "scale": {"domain": [3800, 10000]}
+    },
+    "y": {"field": "RMSE", "type": "quantitative"},
+    
     "tooltip": [
-      {"field": "Bytes", "type": "nominal", "title": "Bytes"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"}
+      {"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+      {"field": "RMSE", "type": "quantitative", "title": "RMSE"}
     ]
   }
 }
-      vegaEmbed("#vis1", yourVlSpec);
-        </script>
+vegaEmbed("#vis1", yourVlSpec);
+</script>
 <hr />
 
-<div id="vis1_1" class="container"></div>
+
+<div id="vis2" class="container"></div>
       <script type='text/javascript'>
-         var yourVlSpec =  {      
+         var yourVlSpec =  {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "data": {
-    "url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t1_data.csv"
+    "url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t1_without_data.csv"
   },
   "title": {"text": "Test point 1", "anchor": "middle"},
   "transform": [{
-    "filter": {"field": "Traffic", "equal": "No"},
-   "filter": "datum.Bytes > 5000" && "datum.Bytes < 5400"
+   "filter": "datum.Bytes > 8400 && datum.Bytes < 9000"
+  
    }],
   "mark": "circle",
   "width": 1200,
   "height": 500,
   "encoding": {
-    "x": {"field": "Bytes","type": "quantitative","scale": {"domain": [5000, 5400]}},
- "y": {
-         
-            "field": "RMSE","type": "quantitative"
-          },
-     "size": {"aggregate": "count"},
+    "x": {
+      "field": "Bytes",
+      "type": "quantitative",
+      "scale": {"domain": [8400, 9000]}
+    },
+    "y": {"field": "RMSE", "type": "quantitative"},
+    
     "tooltip": [
-      {"field": "Bytes", "type": "nominal", "title": "Bytes"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"}
+      {"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+      {"field": "RMSE", "type": "quantitative", "title": "RMSE"}
     ]
   }
 }
-      vegaEmbed("#vis1_1", yourVlSpec);
-        </script>
+vegaEmbed("#vis2", yourVlSpec);
+</script>
 <hr />
-
-
-
 
 
 <table style="width: 850px;" cellspacing="5" cellpadding="5">
@@ -118,44 +119,7 @@
 </tbody>
 </table>
 <hr />
-<div id="vis2" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_2.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 2",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis2", yourVlSpec);
-document.getElementById("vis2").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
+
 
 <table style="width: 850px;" cellspacing="5" cellpadding="5">
 <tbody>
