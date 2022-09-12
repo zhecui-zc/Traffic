@@ -1721,11 +1721,1108 @@ Figure 42 shows all the data results of test point 16, including traffic and no 
 <tr>
 <td style="vertical-align: top;"><strong>Insight:</strong></td>
 <td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. 
-However, the points whose traffic above 60999 bytes, their RMSE are mostly below 7, which means the precision is relatively high. </td>
+However, the points whose traffic above 117474 bytes, their RMSE are all below 8.7, which means the precision is relatively high. </td>
 </tr>
 </tbody>
 </table>
 <hr />
+
+
+
+<div id="vis17" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t17_without_data.csv"
+},
+"title": {"text": "Diagram 43 - Test point 17 (No traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis17", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis17_2" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t17_with_data.csv"
+},
+"title": {"text": "Diagram 44 - Test point 17(With traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis17_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis17_3" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t17_data.csv"
+},
+"title": {"text": "Diagram 45 - Test point 17 (All)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+//"size": {"aggregate": "count"},
+"color": {"field":"Traffic"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis17_3", yourVlSpec);
+</script>
+<hr />
+
+<table style="width: 850px;" cellspacing="5" cellpadding="5">
+<tbody>
+<tr>
+<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+<td style="vertical-align: top;">The scatter plots in Figs. 43 to 45 are the experimental results of test point 17. 
+Figure 43 shows the experimental results of test point 17 without traffic.
+Figure 44 shows the experimental results of test point 17 with traffic. 
+Figure 45 shows all the data results of test point 17, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><strong>Insight:</strong></td>
+<td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. 
+However, the points whose traffic above 176345 bytes, their RMSE are all below 5, which means the precision is relatively high. </td>
+</tr>
+</tbody>
+</table>
+<hr />
+
+
+
+
+
+
+<div id="vis18" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t18_without_data.csv"
+},
+"title": {"text": "Diagram 46 - Test point 18 (No traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis18", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis18_2" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t18_with_data.csv"
+},
+"title": {"text": "Diagram 47 - Test point 18(With traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis18_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis18_3" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t18_data.csv"
+},
+"title": {"text": "Diagram 48 - Test point 18 (All)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+//"size": {"aggregate": "count"},
+"color": {"field":"Traffic"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis18_3", yourVlSpec);
+</script>
+<hr />
+
+<table style="width: 850px;" cellspacing="5" cellpadding="5">
+<tbody>
+<tr>
+<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+<td style="vertical-align: top;">The scatter plots in Figs. 46 to 48 are the experimental results of test point 18. 
+Figure 46 shows the experimental results of test point 18 without traffic.
+Figure 47 shows the experimental results of test point 18 with traffic. 
+Figure 48 shows all the data results of test point 18, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><strong>Insight:</strong></td>
+<td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. 
+  However, the RMSE under traffic conditions is mostly lower than 25, while the RMSE without traffic conditions is mostly 60, whic is the precision under traffic conditions is much higher.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+
+
+
+
+
+
+<div id="vis19" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t19_without_data.csv"
+},
+"title": {"text": "Diagram 49 - Test point 19 (No traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis19", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis19_2" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t19_with_data.csv"
+},
+"title": {"text": "Diagram 50 - Test point 19(With traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis19_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis19_3" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t19_data.csv"
+},
+"title": {"text": "Diagram 51 - Test point 19 (All)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+//"size": {"aggregate": "count"},
+"color": {"field":"Traffic"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis19_3", yourVlSpec);
+</script>
+<hr />
+
+<table style="width: 850px;" cellspacing="5" cellpadding="5">
+<tbody>
+<tr>
+<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+<td style="vertical-align: top;">The scatter plots in Figs. 49 to 51 are the experimental results of test point 19. 
+Figure 49 shows the experimental results of test point 19 without traffic.
+Figure 50 shows the experimental results of test point 19 with traffic. 
+Figure 51 shows all the data results of test point 19, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><strong>Insight:</strong></td>
+<td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. </td>
+</tr>
+</tbody>
+</table>
+<hr />
+
+
+
+<div id="vis20" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t20_without_data.csv"
+},
+"title": {"text": "Diagram 52 - Test point 20 (No traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis20", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis20_2" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t20_with_data.csv"
+},
+"title": {"text": "Diagram 53 - Test point 20(With traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis20_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis20_3" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t20_data.csv"
+},
+"title": {"text": "Diagram 54 - Test point 20 (All)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+//"size": {"aggregate": "count"},
+"color": {"field":"Traffic"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis20_3", yourVlSpec);
+</script>
+<hr />
+
+<table style="width: 850px;" cellspacing="5" cellpadding="5">
+<tbody>
+<tr>
+<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+<td style="vertical-align: top;">The scatter plots in Figs. 50 to 52 are the experimental results of test point 20. 
+Figure 50 shows the experimental results of test point 20 without traffic.
+Figure 51 shows the experimental results of test point 20 with traffic. 
+Figure 52 shows all the data results of test point 20, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><strong>Insight:</strong></td>
+<td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. </td>
+</tr>
+</tbody>
+</table>
+<hr />
+
+
+
+<div id="vis21" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t21_without_data.csv"
+},
+"title": {"text": "Diagram 55 - Test point 21 (No traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis21", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis21_2" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t21_with_data.csv"
+},
+"title": {"text": "Diagram 56 - Test point 17(With traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis21_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis21_3" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t21_data.csv"
+},
+"title": {"text": "Diagram 57 - Test point 21 (All)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+//"size": {"aggregate": "count"},
+"color": {"field":"Traffic"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis21_3", yourVlSpec);
+</script>
+<hr />
+
+<table style="width: 850px;" cellspacing="5" cellpadding="5">
+<tbody>
+<tr>
+<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+<td style="vertical-align: top;">The scatter plots in Figs. 50 to 52 are the experimental results of test point 21. 
+Figure 50 shows the experimental results of test point 21 without traffic.
+Figure 51 shows the experimental results of test point 21 with traffic. 
+Figure 52 shows all the data results of test point 21, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><strong>Insight:</strong></td>
+<td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. </td>
+</tr>
+</tbody>
+</table>
+<hr />
+
+
+
+
+
+<div id="vis22" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t22_without_data.csv"
+},
+"title": {"text": "Diagram 58 - Test point 22 (No traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis22", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis22_2" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t22_with_data.csv"
+},
+"title": {"text": "Diagram 59 - Test point 22(With traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis22_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis22_3" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t22_data.csv"
+},
+"title": {"text": "Diagram 60 - Test point 22 (All)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+//"size": {"aggregate": "count"},
+"color": {"field":"Traffic"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis22_3", yourVlSpec);
+</script>
+<hr />
+
+<table style="width: 850px;" cellspacing="5" cellpadding="5">
+<tbody>
+<tr>
+<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+<td style="vertical-align: top;">The scatter plots in Figs. 58 to 60 are the experimental results of test point 22. 
+Figure 58 shows the experimental results of test point 22 without traffic.
+Figure 59 shows the experimental results of test point 22 with traffic. 
+Figure 60 shows all the data results of test point 22, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><strong>Insight:</strong></td>
+<td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. </td>
+</tr>
+</tbody>
+</table>
+<hr />
+
+
+
+
+
+<div id="vis23" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t23_without_data.csv"
+},
+"title": {"text": "Diagram 61 - Test point 23 (No traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis23", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis23_2" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t23_with_data.csv"
+},
+"title": {"text": "Diagram 62 - Test point 23(With traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis23_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis23_3" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t23_data.csv"
+},
+"title": {"text": "Diagram 63 - Test point 23 (All)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+//"size": {"aggregate": "count"},
+"color": {"field":"Traffic"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis23_3", yourVlSpec);
+</script>
+<hr />
+
+<table style="width: 850px;" cellspacing="5" cellpadding="5">
+<tbody>
+<tr>
+<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+<td style="vertical-align: top;">The scatter plots in Figs. 61 to 63 are the experimental results of test point 23. 
+Figure 61 shows the experimental results of test point 23 without traffic.
+Figure 62 shows the experimental results of test point 23 with traffic. 
+Figure 63 shows all the data results of test point 23, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><strong>Insight:</strong></td>
+<td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. </td>
+</tr>
+</tbody>
+</table>
+<hr />
+
+
+
+
+<div id="vis24" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t24_without_data.csv"
+},
+"title": {"text": "Diagram 64 - Test point 24 (No traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis24", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis24_2" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t24_with_data.csv"
+},
+"title": {"text": "Diagram 65 - Test point 24 (With traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis24_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis24_3" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t24_data.csv"
+},
+"title": {"text": "Diagram 66 - Test point 24 (All)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+//"size": {"aggregate": "count"},
+"color": {"field":"Traffic"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis24_3", yourVlSpec);
+</script>
+<hr />
+
+<table style="width: 850px;" cellspacing="5" cellpadding="5">
+<tbody>
+<tr>
+<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+<td style="vertical-align: top;">The scatter plots in Figs. 64 to 66 are the experimental results of test point 24. 
+Figure 64 shows the experimental results of test point 24 without traffic.
+Figure 65 shows the experimental results of test point 24 with traffic. 
+Figure 66 shows all the data results of test point 24, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><strong>Insight:</strong></td>
+<td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. 
+However, the points whose traffic above 176345 bytes, their RMSE are all below 5, which means the precision is relatively high. </td>
+</tr>
+</tbody>
+</table>
+<hr />
+
+
+
+
+<div id="vis25" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t25_without_data.csv"
+},
+"title": {"text": "Diagram 52 - Test point 25 (No traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis25", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis25_2" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t25_with_data.csv"
+},
+"title": {"text": "Diagram 53 - Test point 25(With traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis25_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis25_3" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t20_data.csv"
+},
+"title": {"text": "Diagram 54 - Test point 25 (All)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+//"size": {"aggregate": "count"},
+"color": {"field":"Traffic"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis25_3", yourVlSpec);
+</script>
+<hr />
+
+<table style="width: 850px;" cellspacing="5" cellpadding="5">
+<tbody>
+<tr>
+<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+<td style="vertical-align: top;">The scatter plots in Figs. 50 to 52 are the experimental results of test point 20. 
+Figure 50 shows the experimental results of test point 20 without traffic.
+Figure 51 shows the experimental results of test point 20 with traffic. 
+Figure 52 shows all the data results of test point 20, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><strong>Insight:</strong></td>
+<td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. 
+However, the points whose traffic above 176345 bytes, their RMSE are all below 5, which means the precision is relatively high. </td>
+</tr>
+</tbody>
+</table>
+<hr />
+
 
 
 
