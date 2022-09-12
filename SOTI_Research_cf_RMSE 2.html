@@ -46,7 +46,7 @@
   "data": {
     "url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t1_without_data.csv"
   },
-  "title": {"text": "Test point 1 (No traffic)", "anchor": "middle"},
+  "title": {"text": "Diagram 1 - Test point 1 (No traffic)", "anchor": "middle"},
   "transform": [{
    "filter": "datum.Bytes > 3800"
    }],
@@ -60,10 +60,12 @@
       "scale": {"domain": [3800, 10000]}
     },
     "y": {"field": "RMSE", "type": "quantitative"},
-    
+    "size": {"aggregate": "count"},
+    "color": {"aggregate": "count"},
     "tooltip": [
       {"field": "Bytes", "type": "quantitative", "title": "Bytes"},
-      {"field": "RMSE", "type": "quantitative", "title": "RMSE"}
+      {"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+      {"aggregate": "count", "type": "nominal", "title": "Count"}
     ]
   }
 }
@@ -72,17 +74,50 @@ vegaEmbed("#vis1", yourVlSpec);
 <hr />
 
 
-<div id="vis2" class="container"></div>
+<div id="vis1_2" class="container"></div>
       <script type='text/javascript'>
          var yourVlSpec =  {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "data": {
-    "url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t1_without_data.csv"
+    "url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t1_with_data.csv"
   },
-  "title": {"text": "Test point 1", "anchor": "middle"},
+  "title": {"text": "Diagram 2 - Test point 1 (With traffic)", "anchor": "middle"},
+  /*"transform": [{
+   "filter": "datum.Bytes < 20000"
+   }],*/
+  "mark": "circle",
+  "width": 1200,
+  "height": 500,
+  "encoding": {
+    "x": {
+      "field": "Bytes",
+      "type": "quantitative",
+      //"scale": {"domain": [8400, 9000]}
+    },
+    "y": {"field": "RMSE", "type": "quantitative"},
+    "size": {"aggregate": "count"},
+    "color": {"aggregate": "count"},
+    "tooltip": [
+      {"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+      {"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+      {"aggregate": "count", "type": "nominal", "title": "Count"}
+    ]
+  }
+}
+vegaEmbed("#vis1_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis1_3" class="container"></div>
+      <script type='text/javascript'>
+         var yourVlSpec =  {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t1_data.csv"
+  },
+  "title": {"text": "Diagram 3 - Test point 1 (All)", "anchor": "middle"},
   "transform": [{
-   "filter": "datum.Bytes > 8400 && datum.Bytes < 9000"
-  
+   "filter": "datum.Bytes > 3800"
    }],
   "mark": "circle",
   "width": 1200,
@@ -91,17 +126,18 @@ vegaEmbed("#vis1", yourVlSpec);
     "x": {
       "field": "Bytes",
       "type": "quantitative",
-      "scale": {"domain": [8400, 9000]}
     },
     "y": {"field": "RMSE", "type": "quantitative"},
-    
+    "size": {"aggregate": "count"},
+    "color": {"field":"Traffic"},
     "tooltip": [
       {"field": "Bytes", "type": "quantitative", "title": "Bytes"},
-      {"field": "RMSE", "type": "quantitative", "title": "RMSE"}
+      {"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+      {"aggregate": "count", "type": "nominal", "title": "Count"}
     ]
   }
 }
-vegaEmbed("#vis2", yourVlSpec);
+vegaEmbed("#vis1_3", yourVlSpec);
 </script>
 <hr />
 
@@ -110,243 +146,616 @@ vegaEmbed("#vis2", yourVlSpec);
 <tbody>
 <tr>
 <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 1.</td>
+<td style="vertical-align: top;">The scatter plots in Figs. 1 to 3 are the experimental results of test point 1. 
+  Figure 1 shows the experimental results of test point 1 without traffic.
+   Figure 2 shows the experimental results of test point 1 with traffic. 
+   Figure 3 shows all the data results of test point 1, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
 </tr>
 <tr>
 <td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>After looking at the resulting visualization, we can see that the data are very discrete and there is no obvious correlation.</td>
+<td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. </td>
 </tr>
 </tbody>
 </table>
 <hr />
 
 
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 2.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>CMX reported roughly the same data for Samsung phones at test point 2. The two sets of data are respectively -57 with an error of 21.86, and -56 with an error of 22.17.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-<div id="vis3" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
+<div id="vis2" class="container"></div>
+      <script type='text/javascript'>
+         var yourVlSpec =  {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_3.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 3",
-      "anchor": "middle"
-      },
+  "data": {
+    "url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t2_without_data.csv"
+  },
+  "title": {"text": "Diagram 4 - Test point 2 (No traffic)", "anchor": "middle"},
+  // "transform": [{
+  //  "filter": "datum.Bytes > 3800"
+  //  }],
   "mark": "circle",
-  "width": 500,
+  "width": 1200,
   "height": 500,
   "encoding": {
     "x": {
-    "bin": {"maxbins": 10},
-      "field": "maxDetectedRssi"
+      "field": "Bytes",
+      "type": "quantitative",
+      //"scale": {"domain": [3800, 10000]}
     },
-    "y": {
-      "bin": {"maxbins": 10},
-      "field": "RMSE"
-    },
+    "y": {"field": "RMSE", "type": "quantitative"},
     "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
+    //"color": {"aggregate": "count"},
+    "tooltip": [
+      {"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+      {"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+      {"aggregate": "count", "type": "nominal", "title": "Count"}
+    ]
+  }
+}
+vegaEmbed("#vis2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis2_2" class="container"></div>
+      <script type='text/javascript'>
+         var yourVlSpec =  {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t2_with_data.csv"
+  },
+  "title": {"text": "Diagram 5 - Test point 2 (With traffic)", "anchor": "middle"},
+  // "transform": [{
+  //  "filter": "datum.Bytes > 3800"
+  //  }],
+  "mark": "circle",
+  "width": 1200,
+  "height": 500,
+  "encoding": {
+    "x": {
+      "field": "Bytes",
+      "type": "quantitative",
+      //"scale": {"domain": [3800, 10000]}
     },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
+    "y": {"field": "RMSE", "type": "quantitative"},
+    "size": {"aggregate": "count"},
+    //"color": {"aggregate": "count"},
+    "tooltip": [
+      {"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+      {"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+      {"aggregate": "count", "type": "nominal", "title": "Count"}
+    ]
+  }
+}
+vegaEmbed("#vis2_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis2_3" class="container"></div>
+      <script type='text/javascript'>
+         var yourVlSpec =  {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t2_data.csv"
+  },
+  "title": {"text": "Diagram 6 - Test point 2 (All)", "anchor": "middle"},
+  // "transform": [{
+  //  "filter": "datum.Bytes > 3800"
+  //  }],
+  "mark": "circle",
+  "width": 1200,
+  "height": 500,
+  "encoding": {
+    "x": {
+      "field": "Bytes",
+      "type": "quantitative",
+    },
+    "y": {"field": "RMSE", "type": "quantitative"},
+    //"size": {"aggregate": "count"},
+    "color": {"field":"Traffic"},
+    "tooltip": [
+      {"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+      {"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+      {"aggregate": "count", "type": "nominal", "title": "Count"}
+    ]
+  }
+}
+vegaEmbed("#vis2_3", yourVlSpec);
+</script>
+<hr />
+
+<table style="width: 850px;" cellspacing="5" cellpadding="5">
+  <tbody>
+  <tr>
+  <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+  <td style="vertical-align: top;">The scatter plots in Figs. 4 to 6 are the experimental results of test point 2. 
+    Figure 4 shows the experimental results of test point 2 without traffic.
+     Figure 5 shows the experimental results of test point 2 with traffic. 
+     Figure 6 shows all the data results of test point 2, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
+  </tr>
+  <tr>
+  <td style="vertical-align: top;"><strong>Insight:</strong></td>
+  <td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. 
+    However, the points whose traffic above 1 million bytes, their RMSE are all below 5.5, which means the precision is relatively high. </td>
+  </tr>
+  </tbody>
+  </table>
+  <hr />
+
+
+
+
+
+  <div id="vis3" class="container"></div>
+      <script type='text/javascript'>
+         var yourVlSpec =  {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t3_without_data.csv"
+  },
+  "title": {"text": "Diagram 7 - Test point 3 (No traffic)", "anchor": "middle"},
+  // "transform": [{
+  //  "filter": "datum.Bytes > 3800"
+  //  }],
+  "mark": "circle",
+  "width": 1200,
+  "height": 500,
+  "encoding": {
+    "x": {
+      "field": "Bytes",
+      "type": "quantitative",
+      //"scale": {"domain": [3800, 10000]}
+    },
+    "y": {"field": "RMSE", "type": "quantitative"},
+    "size": {"aggregate": "count"},
+    //"color": {"aggregate": "count"},
+    "tooltip": [
+      {"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+      {"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+      {"aggregate": "count", "type": "nominal", "title": "Count"}
+    ]
+  }
+}
 vegaEmbed("#vis3", yourVlSpec);
-document.getElementById("vis3").style.padding = "20px 10px 20px 75px";
-  </script>
+</script>
 <hr />
 
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 3.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>After looking at the resulting visualization, we can see that After looking at the resulting visualization, we can see that the data are very discrete and there is no obvious correlation. </td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-<div id="vis4" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
+<div id="vis3_2" class="container"></div>
+      <script type='text/javascript'>
+         var yourVlSpec =  {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_4.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 4",
-      "anchor": "middle"
-      },
+  "data": {
+    "url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t3_with_data.csv"
+  },
+  "title": {"text": "Diagram 8 - Test point 3 (With traffic)", "anchor": "middle"},
+  // "transform": [{
+  //  "filter": "datum.Bytes > 3800"
+  //  }],
   "mark": "circle",
-  "width": 500,
+  "width": 1200,
   "height": 500,
   "encoding": {
     "x": {
-    "bin": {"maxbins": 10},
-      "field": "maxDetectedRssi"
+      "field": "Bytes",
+      "type": "quantitative",
+      //"scale": {"domain": [3800, 10000]}
     },
-    "y": {
-      "bin": {"maxbins": 10},
-      "field": "RMSE"
-    },
+    "y": {"field": "RMSE", "type": "quantitative"},
     "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
+    //"color": {"aggregate": "count"},
+    "tooltip": [
+      {"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+      {"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+      {"aggregate": "count", "type": "nominal", "title": "Count"}
+    ]
+  }
+}
+vegaEmbed("#vis3_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis3_3" class="container"></div>
+      <script type='text/javascript'>
+         var yourVlSpec =  {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t3_data.csv"
+  },
+  "title": {"text": "Diagram 9 - Test point 3 (All)", "anchor": "middle"},
+  // "transform": [{
+  //  "filter": "datum.Bytes > 3800"
+  //  }],
+  "mark": "circle",
+  "width": 1200,
+  "height": 500,
+  "encoding": {
+    "x": {
+      "field": "Bytes",
+      "type": "quantitative",
     },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
+    "y": {"field": "RMSE", "type": "quantitative"},
+    //"size": {"aggregate": "count"},
+    "color": {"field":"Traffic"},
+    "tooltip": [
+      {"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+      {"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+      {"aggregate": "count", "type": "nominal", "title": "Count"}
+    ]
+  }
+}
+vegaEmbed("#vis3_3", yourVlSpec);
+</script>
+<hr />
+
+<table style="width: 850px;" cellspacing="5" cellpadding="5">
+  <tbody>
+  <tr>
+  <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+  <td style="vertical-align: top;">The scatter plots in Figs. 7 to 9 are the experimental results of test point 3. 
+    Figure 7 shows the experimental results of test point 3 without traffic.
+     Figure 8 shows the experimental results of test point 3 with traffic. 
+     Figure 9 shows all the data results of test point 3, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
+  </tr>
+  <tr>
+  <td style="vertical-align: top;"><strong>Insight:</strong></td>
+  <td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. 
+    However, the points whose traffic above 22882 bytes, their RMSE are all below 11, which means the precision is relatively high. </td>
+  </tr>
+  </tbody>
+  </table>
+  <hr />
+
+
+  <div id="vis4" class="container"></div>
+  <script type='text/javascript'>
+     var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t4_without_data.csv"
+},
+"title": {"text": "Diagram 10 - Test point 4 (No traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+  "field": "Bytes",
+  "type": "quantitative",
+  //"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+  {"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+  {"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+  {"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
 vegaEmbed("#vis4", yourVlSpec);
-document.getElementById("vis4").style.padding = "20px 10px 20px 75px";
-  </script>
+</script>
+<hr />
+
+<div id="vis4_2" class="container"></div>
+  <script type='text/javascript'>
+     var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t4_with_data.csv"
+},
+"title": {"text": "Diagram 11 - Test point 4 (With traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+  "field": "Bytes",
+  "type": "quantitative",
+  //"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+  {"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+  {"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+  {"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis4_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis4_3" class="container"></div>
+  <script type='text/javascript'>
+     var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t4_data.csv"
+},
+"title": {"text": "Diagram 12 - Test point 4 (All)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+  "field": "Bytes",
+  "type": "quantitative",
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+//"size": {"aggregate": "count"},
+"color": {"field":"Traffic"},
+"tooltip": [
+  {"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+  {"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+  {"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis4_3", yourVlSpec);
+</script>
 <hr />
 
 <table style="width: 850px;" cellspacing="5" cellpadding="5">
 <tbody>
 <tr>
 <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 4.</td>
+<td style="vertical-align: top;">The scatter plots in Figs. 10 to 12 are the experimental results of test point 4. 
+Figure 10 shows the experimental results of test point 4 without traffic.
+ Figure 11 shows the experimental results of test point 4 with traffic. 
+ Figure 12 shows all the data results of test point 4, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
 </tr>
 <tr>
 <td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>After looking at the resulting visualization, we can see that the correlation between Rssi and RMSE is generally negative. </td>
+<td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. 
+However, the points whose traffic above 109987 bytes, their RMSE are all below 7.5, which means the precision is relatively high. </td>
 </tr>
 </tbody>
 </table>
 <hr />
-
 
 <div id="vis5" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
+      <script type='text/javascript'>
+         var yourVlSpec =  {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_5.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 5",
-      "anchor": "middle"
-      },
+  "data": {
+    "url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t5_without_data.csv"
+  },
+  "title": {"text": "Diagram 13 - Test point 5 (No traffic)", "anchor": "middle"},
+  // "transform": [{
+  //  "filter": "datum.Bytes > 3800"
+  //  }],
   "mark": "circle",
-  "width": 500,
+  "width": 1200,
   "height": 500,
   "encoding": {
     "x": {
-    "bin": {"maxbins": 10},
-      "field": "maxDetectedRssi"
+      "field": "Bytes",
+      "type": "quantitative",
+      //"scale": {"domain": [3800, 10000]}
     },
-    "y": {
-      "bin": {"maxbins": 10},
-      "field": "RMSE"
-    },
+    "y": {"field": "RMSE", "type": "quantitative"},
     "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
+    //"color": {"aggregate": "count"},
+    "tooltip": [
+      {"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+      {"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+      {"aggregate": "count", "type": "nominal", "title": "Count"}
+    ]
+  }
+}
 vegaEmbed("#vis5", yourVlSpec);
-document.getElementById("vis5").style.padding = "20px 10px 20px 75px";
-  </script>
+</script>
 <hr />
 
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 5.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>After looking at the resulting visualization, we can see that the correlation between Rssi and RMSE is generally negative. </td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis6" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
+<div id="vis5_2" class="container"></div>
+      <script type='text/javascript'>
+         var yourVlSpec =  {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_6.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 6",
-      "anchor": "middle"
-      },
+  "data": {
+    "url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t5_with_data.csv"
+  },
+  "title": {"text": "Diagram 14 - Test point 5 (With traffic)", "anchor": "middle"},
+  // "transform": [{
+  //  "filter": "datum.Bytes > 3800"
+  //  }],
   "mark": "circle",
-  "width": 500,
+  "width": 1200,
   "height": 500,
   "encoding": {
     "x": {
-    "bin": {"maxbins": 10},
-      "field": "maxDetectedRssi"
+      "field": "Bytes",
+      "type": "quantitative",
+      //"scale": {"domain": [3800, 10000]}
     },
-    "y": {
-      "bin": {"maxbins": 10},
-      "field": "RMSE"
+    "y": {"field": "RMSE", "type": "quantitative"},
+    //"size": {"aggregate": "count"},
+    //"color": {"aggregate": "count"},
+    "tooltip": [
+      {"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+      {"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+      {"aggregate": "count", "type": "nominal", "title": "Count"}
+    ]
+  }
+}
+vegaEmbed("#vis5_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis5_3" class="container"></div>
+      <script type='text/javascript'>
+         var yourVlSpec =  {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t5_data.csv"
+  },
+  "title": {"text": "Diagram 15 - Test point 5 (All)", "anchor": "middle"},
+  // "transform": [{
+  //  "filter": "datum.Bytes > 3800"
+  //  }],
+  "mark": "circle",
+  "width": 1200,
+  "height": 500,
+  "encoding": {
+    "x": {
+      "field": "Bytes",
+      "type": "quantitative",
     },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
+    "y": {"field": "RMSE", "type": "quantitative"},
+    //"size": {"aggregate": "count"},
+    "color": {"field":"Traffic"},
+    "tooltip": [
+      {"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+      {"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+      {"aggregate": "count", "type": "nominal", "title": "Count"}
+    ]
+  }
+}
+vegaEmbed("#vis5_3", yourVlSpec);
+</script>
+<hr />
+
+<table style="width: 850px;" cellspacing="5" cellpadding="5">
+  <tbody>
+  <tr>
+  <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+  <td style="vertical-align: top;">The scatter plots in Figs. 13 to 15 are the experimental results of test point 5. 
+    Figure 13 shows the experimental results of test point 5 without traffic.
+     Figure 14 shows the experimental results of test point 5 with traffic. 
+     Figure 15 shows all the data results of test point 5, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
+  </tr>
+  <tr>
+  <td style="vertical-align: top;"><strong>Insight:</strong></td>
+  <td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision.  </td>
+  </tr>
+  </tbody>
+  </table>
+  <hr />
+
+
+
+  <div id="vis6" class="container"></div>
+  <script type='text/javascript'>
+     var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t6_without_data.csv"
+},
+"title": {"text": "Diagram 16 - Test point 6 (No traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+  "field": "Bytes",
+  "type": "quantitative",
+  //"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+  {"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+  {"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+  {"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
 vegaEmbed("#vis6", yourVlSpec);
-document.getElementById("vis6").style.padding = "20px 10px 20px 75px";
-  </script>
+</script>
+<hr />
+
+<div id="vis6_2" class="container"></div>
+  <script type='text/javascript'>
+     var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t6_with_data.csv"
+},
+"title": {"text": "Diagram 17 - Test point 6 (With traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+  "field": "Bytes",
+  "type": "quantitative",
+  //"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+  {"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+  {"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+  {"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis6_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis6_3" class="container"></div>
+  <script type='text/javascript'>
+     var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t6_data.csv"
+},
+"title": {"text": "Diagram 18 - Test point 6 (All)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+  "field": "Bytes",
+  "type": "quantitative",
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+//"size": {"aggregate": "count"},
+"color": {"field":"Traffic"},
+"tooltip": [
+  {"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+  {"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+  {"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis6_3", yourVlSpec);
+</script>
 <hr />
 
 <table style="width: 850px;" cellspacing="5" cellpadding="5">
 <tbody>
 <tr>
 <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 6.</td>
+<td style="vertical-align: top;">The scatter plots in Figs. 16 to 18 are the experimental results of test point 6. 
+Figure 16 shows the experimental results of test point 6 without traffic.
+ Figure 17 shows the experimental results of test point 6 with traffic. 
+ Figure 18 shows all the data results of test point 6, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
 </tr>
 <tr>
 <td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>After looking at the resulting visualization, we can see that the correlation between Rssi and RMSE is generally positive. </td>
+<td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. 
+However, the points whose traffic above 259687 bytes, their RMSE are all below 6, which means the precision is relatively high. </td>
 </tr>
 </tbody>
 </table>
@@ -357,327 +766,600 @@ document.getElementById("vis6").style.padding = "20px 10px 20px 75px";
 <div id="vis7" class="container"></div>
 <script type='text/javascript'>
    var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_7.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 7",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-    "bin": {"maxbins": 10},
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      "bin": {"maxbins": 10},
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t7_without_data.csv"
+},
+"title": {"text": "Diagram 19 - Test point 7 (No traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
 vegaEmbed("#vis7", yourVlSpec);
-document.getElementById("vis7").style.padding = "20px 10px 20px 75px";
-  </script>
+</script>
+<hr />
+
+<div id="vis7_2" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t7_with_data.csv"
+},
+"title": {"text": "Diagram 20 - Test point 7 (With traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis7_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis7_3" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t6_data.csv"
+},
+"title": {"text": "Diagram 21 - Test point 7 (All)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+//"size": {"aggregate": "count"},
+"color": {"field":"Traffic"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis7_3", yourVlSpec);
+</script>
 <hr />
 
 <table style="width: 850px;" cellspacing="5" cellpadding="5">
 <tbody>
 <tr>
 <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 7.</td>
+<td style="vertical-align: top;">The scatter plots in Figs. 16 to 18 are the experimental results of test point 6. 
+Figure 16 shows the experimental results of test point 6 without traffic.
+Figure 17 shows the experimental results of test point 6 with traffic. 
+Figure 18 shows all the data results of test point 6, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
 </tr>
 <tr>
 <td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>After looking at the resulting visualization, we can see that After looking at the resulting visualization, we can see that the data are discrete and there is no obvious correlation. </td>
+<td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. 
+However, the points whose traffic above 259687 bytes, their RMSE are all below 6, which means the precision is relatively high. </td>
 </tr>
 </tbody>
 </table>
 <hr />
+
 
 
 
 <div id="vis8" class="container"></div>
 <script type='text/javascript'>
    var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_8.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 8",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-    "bin": {"maxbins": 10},
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      "bin": {"maxbins": 10},
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t8_without_data.csv"
+},
+"title": {"text": "Diagram 22 - Test point 8 (No traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
 vegaEmbed("#vis8", yourVlSpec);
-document.getElementById("vis8").style.padding = "20px 10px 20px 75px";
-  </script>
+</script>
 <hr />
 
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 8.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>After looking at the resulting visualization, we can see that After looking at the resulting visualization, we can see that the data are very discrete and there is no obvious correlation. </td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis10" class="container"></div>
+<div id="vis8_2" class="container"></div>
 <script type='text/javascript'>
    var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_10.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 10",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-    "bin": {"maxbins": 10},
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      "bin": {"maxbins": 10},
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis10", yourVlSpec);
-document.getElementById("vis10").style.padding = "20px 10px 20px 75px";
-  </script>
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t8_with_data.csv"
+},
+"title": {"text": "Diagram 23 - Test point 8 (With traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis8_2", yourVlSpec);
+</script>
 <hr />
 
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 10.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>After looking at the resulting visualization, we can see that the correlation between Rssi and RMSE is generally positive. </td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis11" class="container"></div>
+<div id="vis8_3" class="container"></div>
 <script type='text/javascript'>
    var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_11.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 11",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-    "bin": {"maxbins": 10},
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      "bin": {"maxbins": 10},
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis11", yourVlSpec);
-document.getElementById("vis11").style.padding = "20px 10px 20px 75px";
-  </script>
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t8_data.csv"
+},
+"title": {"text": "Diagram 24 - Test point 8 (All)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+//"size": {"aggregate": "count"},
+"color": {"field":"Traffic"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis8_3", yourVlSpec);
+</script>
 <hr />
 
 <table style="width: 850px;" cellspacing="5" cellpadding="5">
 <tbody>
 <tr>
 <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 11.</td>
+<td style="vertical-align: top;">The scatter plots in Figs. 22 to 24 are the experimental results of test point 8. 
+Figure 22 shows the experimental results of test point 8 without traffic.
+Figure 23 shows the experimental results of test point 8 with traffic. 
+Figure 24 shows all the data results of test point 8, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
 </tr>
 <tr>
 <td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>After looking at the resulting visualization, we can see that the correlation between Rssi and RMSE is generally negative. </td>
+<td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. 
+However, the points whose traffic above 89727 bytes, their RMSE are all below 6.5, which means the precision is relatively high. </td>
 </tr>
 </tbody>
 </table>
 <hr />
 
 
+
+
+<div id="vis9" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t10_without_data.csv"
+},
+"title": {"text": "Diagram 25 - Test point 10 (No traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis9", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis9_2" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t10_with_data.csv"
+},
+"title": {"text": "Diagram 26 - Test point 10 (With traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis9_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis9_3" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t10_data.csv"
+},
+"title": {"text": "Diagram 27 - Test point 10 (All)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+//"size": {"aggregate": "count"},
+"color": {"field":"Traffic"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis9_3", yourVlSpec);
+</script>
+<hr />
+
+<table style="width: 850px;" cellspacing="5" cellpadding="5">
+<tbody>
+<tr>
+<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+<td style="vertical-align: top;">The scatter plots in Figs. 25 to 27 are the experimental results of test point 10. 
+Figure 25 shows the experimental results of test point 10 without traffic.
+Figure 26 shows the experimental results of test point 10 with traffic. 
+Figure 27 shows all the data results of test point 10, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><strong>Insight:</strong></td>
+<td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. 
+However, the points whose traffic above 853103 bytes, their RMSE are mostly below 11, which means the precision is relatively high. </td>
+</tr>
+</tbody>
+</table>
+<hr />
 
 
 <div id="vis12" class="container"></div>
 <script type='text/javascript'>
    var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_12.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 12",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-    "bin": {"maxbins": 10},
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      "bin": {"maxbins": 10},
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t12_without_data.csv"
+},
+"title": {"text": "Diagram 28 - Test point 12 (No traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
 vegaEmbed("#vis12", yourVlSpec);
-document.getElementById("vis12").style.padding = "20px 10px 20px 75px";
-  </script>
+</script>
+<hr />
+
+<div id="vis12_2" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t12_with_data.csv"
+},
+"title": {"text": "Diagram 29 - Test point 12(With traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis12_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis12_3" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t12_data.csv"
+},
+"title": {"text": "Diagram 30 - Test point 12 (All)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+//"size": {"aggregate": "count"},
+"color": {"field":"Traffic"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis12_3", yourVlSpec);
+</script>
 <hr />
 
 <table style="width: 850px;" cellspacing="5" cellpadding="5">
 <tbody>
 <tr>
 <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 12.</td>
+<td style="vertical-align: top;">The scatter plots in Figs. 28 to 30 are the experimental results of test point 12. 
+Figure 28 shows the experimental results of test point 12 without traffic.
+Figure 29 shows the experimental results of test point 12 with traffic. 
+Figure 30 shows all the data results of test point 12, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
 </tr>
 <tr>
 <td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>After looking at the resulting visualization, we can see that the correlation between Rssi and RMSE is generally negative. </td>
+<td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. 
+However, the points whose traffic above 60999 bytes, their RMSE are mostly below 7, which means the precision is relatively high. </td>
 </tr>
 </tbody>
 </table>
 <hr />
 
 
-
 <div id="vis13" class="container"></div>
 <script type='text/javascript'>
    var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_13.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 13",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-    "bin": {"maxbins": 10},
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      "bin": {"maxbins": 10},
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t13_without_data.csv"
+},
+"title": {"text": "Diagram 31 - Test point 13 (No traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
 vegaEmbed("#vis13", yourVlSpec);
-document.getElementById("vis13").style.padding = "20px 10px 20px 75px";
-  </script>
+</script>
+<hr />
+
+<div id="vis13_2" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t13_with_data.csv"
+},
+"title": {"text": "Diagram 32 - Test point 12(With traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis13_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis13_3" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t13_data.csv"
+},
+"title": {"text": "Diagram 33 - Test point 13 (All)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+//"size": {"aggregate": "count"},
+"color": {"field":"Traffic"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis13_3", yourVlSpec);
+</script>
 <hr />
 
 <table style="width: 850px;" cellspacing="5" cellpadding="5">
 <tbody>
 <tr>
 <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 13.</td>
+<td style="vertical-align: top;">The scatter plots in Figs. 31 to 33 are the experimental results of test point 13. 
+Figure 31 shows the experimental results of test point 13 without traffic.
+Figure 32 shows the experimental results of test point 13 with traffic. 
+Figure 33 shows all the data results of test point 13, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
 </tr>
 <tr>
 <td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>After looking at the resulting visualization,  we can see that the data are very discrete and there is no obvious correlation. </td>
+<td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. </td>
 </tr>
 </tbody>
 </table>
@@ -688,49 +1370,117 @@ document.getElementById("vis13").style.padding = "20px 10px 20px 75px";
 <div id="vis14" class="container"></div>
 <script type='text/javascript'>
    var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_14.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 14",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t14_without_data.csv"
+},
+"title": {"text": "Diagram 34 - Test point 14 (No traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
 vegaEmbed("#vis14", yourVlSpec);
-document.getElementById("vis14").style.padding = "20px 10px 20px 75px";
-  </script>
+</script>
+<hr />
+
+<div id="vis14_2" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t14_with_data.csv"
+},
+"title": {"text": "Diagram 35 - Test point 14(With traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis14_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis14_3" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t14_data.csv"
+},
+"title": {"text": "Diagram 36 - Test point 14 (All)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+//"size": {"aggregate": "count"},
+"color": {"field":"Traffic"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis14_3", yourVlSpec);
+</script>
 <hr />
 
 <table style="width: 850px;" cellspacing="5" cellpadding="5">
 <tbody>
 <tr>
 <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 14.</td>
+<td style="vertical-align: top;">The scatter plots in Figs. 34 to 36 are the experimental results of test point 14. 
+Figure 34 shows the experimental results of test point 14 without traffic.
+Figure 35 shows the experimental results of test point 14 with traffic. 
+Figure 36 shows all the data results of test point 14, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
 </tr>
-
+<tr>
+<td style="vertical-align: top;"><strong>Insight:</strong></td>
+<td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. </td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -740,3733 +1490,242 @@ document.getElementById("vis14").style.padding = "20px 10px 20px 75px";
 <div id="vis15" class="container"></div>
 <script type='text/javascript'>
    var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_15.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 15",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        "bin": {"maxbins":20},
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        "bin": {"maxbins": 20},
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t15_without_data.csv"
+},
+"title": {"text": "Diagram 37 - Test point 15 (No traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
 vegaEmbed("#vis15", yourVlSpec);
-document.getElementById("vis15").style.padding = "20px 10px 20px 75px";
-  </script>
+</script>
+<hr />
+
+<div id="vis15_2" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t15_with_data.csv"
+},
+"title": {"text": "Diagram 38 - Test point 12(With traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis15_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis15_3" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t15_data.csv"
+},
+"title": {"text": "Diagram 39 - Test point 15 (All)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+//"size": {"aggregate": "count"},
+"color": {"field":"Traffic"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis15_3", yourVlSpec);
+</script>
 <hr />
 
 <table style="width: 850px;" cellspacing="5" cellpadding="5">
 <tbody>
 <tr>
 <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 15.</td>
+<td style="vertical-align: top;">The scatter plots in Figs. 37 to 39 are the experimental results of test point 15. 
+Figure 37 shows the experimental results of test point 15 without traffic.
+Figure 38 shows the experimental results of test point 15 with traffic. 
+Figure 39 shows all the data results of test point 15, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
 </tr>
 <tr>
 <td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>The data at test point 15 is scattered, with no discernable pattern. </td>
+<td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. </td>
 </tr>
 </tbody>
 </table>
 <hr />
+
 
 
 
 <div id="vis16" class="container"></div>
 <script type='text/javascript'>
    var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_16.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 16",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t16_without_data.csv"
+},
+"title": {"text": "Diagram 40 - Test point 16 (No traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
 vegaEmbed("#vis16", yourVlSpec);
-document.getElementById("vis16").style.padding = "20px 10px 20px 75px";
-  </script>
+</script>
+<hr />
+
+<div id="vis16_2" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t16_with_data.csv"
+},
+"title": {"text": "Diagram 41 - Test point 12(With traffic)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+//"scale": {"domain": [3800, 10000]}
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+"size": {"aggregate": "count"},
+//"color": {"aggregate": "count"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis16_2", yourVlSpec);
+</script>
+<hr />
+
+<div id="vis16_3" class="container"></div>
+<script type='text/javascript'>
+   var yourVlSpec =  {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+"url": "https://raw.githubusercontent.com/zhecui-zc/Traffic/master/processed_data/t16_data.csv"
+},
+"title": {"text": "Diagram 42 - Test point 16 (All)", "anchor": "middle"},
+// "transform": [{
+//  "filter": "datum.Bytes > 3800"
+//  }],
+"mark": "circle",
+"width": 1200,
+"height": 500,
+"encoding": {
+"x": {
+"field": "Bytes",
+"type": "quantitative",
+},
+"y": {"field": "RMSE", "type": "quantitative"},
+//"size": {"aggregate": "count"},
+"color": {"field":"Traffic"},
+"tooltip": [
+{"field": "Bytes", "type": "quantitative", "title": "Bytes"},
+{"field": "RMSE", "type": "quantitative", "title": "RMSE"},
+{"aggregate": "count", "type": "nominal", "title": "Count"}
+]
+}
+}
+vegaEmbed("#vis16_3", yourVlSpec);
+</script>
 <hr />
 
 <table style="width: 850px;" cellspacing="5" cellpadding="5">
 <tbody>
 <tr>
 <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 16.</td>
+<td style="vertical-align: top;">The scatter plots in Figs. 40 to 42 are the experimental results of test point 16. 
+Figure 40 shows the experimental results of test point 16 without traffic.
+Figure 41 shows the experimental results of test point 16 with traffic. 
+Figure 42 shows all the data results of test point 16, including traffic and no traffic, where the blue points indicate no traffic and the orange points indicate traffic.</td>
 </tr>
 <tr>
 <td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>The data at test point 16 is scattered, with no discernable pattern. </td>
+<td style="vertical-align: top;"></a>After looking at the resulting visualization, there is no obvious correlation between traffic and precision. 
+However, the points whose traffic above 60999 bytes, their RMSE are mostly below 7, which means the precision is relatively high. </td>
 </tr>
 </tbody>
 </table>
 <hr />
-
-
-
-<div id="vis17" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_17.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 17",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis17", yourVlSpec);
-document.getElementById("vis17").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 17.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>After looking at the resulting visualization, we can see that the data are very discrete and there is no obvious correlation. </td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-<div id="vis18" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_18.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 18",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        "bin": {"maxbins": 20}, 
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        "bin": {"maxbins": 20}, 
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis18", yourVlSpec);
-document.getElementById("vis18").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 18.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>The data at test point 18 is scattered, with no discernable pattern. </td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis19" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_19.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 19",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis19", yourVlSpec);
-document.getElementById("vis19").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 19.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>After looking at the resulting visualization, we can see that the data are very discrete and there is no obvious correlation. </td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-
-<div id="vis20" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_20.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 20",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        "bin": {"maxbins": 20},   
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        "bin": {"maxbins": 20},   
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis20", yourVlSpec);
-document.getElementById("vis20").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 20.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>After looking at the resulting visualization, we can see that the data are very discrete and there is no obvious correlation. </td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis21" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_21.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 21",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        "bin": {"maxbins": 20}, 
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        "bin": {"maxbins": 20}, 
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis21", yourVlSpec);
-document.getElementById("vis21").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 21.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>The data at test point 16 is scattered, with no discernable pattern.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis22" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_22.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 22",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        "bin": {"maxbins": 20}, 
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        "bin": {"maxbins": 20}, 
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis22", yourVlSpec);
-document.getElementById("vis22").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 22.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>After looking at the resulting visualization, we can see that the correlation between Rssi and RMSE is generally negative.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis23" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_23.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 23",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        "bin": {"maxbins": 20}, 
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        "bin": {"maxbins": 20}, 
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis23", yourVlSpec);
-document.getElementById("vis23").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 23.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>After looking at the resulting visualization, we can see that the data are very discrete and there is no obvious correlation.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis24" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_24.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 24",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      "bin": {"maxbins": 10},   
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      "bin": {"maxbins": 10}, 
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis24", yourVlSpec);
-document.getElementById("vis24").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 24.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>After looking at the resulting visualization, we can see that the data are very discrete and there is no obvious correlation.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-<div id="vis25" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_25.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 25",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      "bin": {"maxbins": 10},   
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      "bin": {"maxbins": 10}, 
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis25", yourVlSpec);
-document.getElementById("vis25").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 25.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>The data is very discrete and there are no obvious relationships.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis26" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_26.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 26",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      "bin": {"maxbins": 10},   
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      "bin": {"maxbins": 10}, 
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis26", yourVlSpec);
-document.getElementById("vis26").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 26.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>The data is very discrete and there are no obvious relationships.</td>
-</tr>
-</tbody>
-</table>
-<hr />
- 
-
-<div id="vis_ss_1_15" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_1_15.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 1 ~ 15 (unassociated)",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      "bin": {"maxbins": 10},   
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      "bin": {"maxbins": 10}, 
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_ss_1_15", yourVlSpec);
-document.getElementById("vis_ss_1_15").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 1 to 15.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>The data is very discrete and there are no obvious relationships, the Rssi is mainly between -82 and -39.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_ss_16_26" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_16_26.csv"},
-  "title": {
-      "text": "SamSung Phone - Test point 16 ~ 26 (associated)",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      "bin": {"maxbins": 10},   
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      "bin": {"maxbins": 10}, 
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_ss_16_26", yourVlSpec);
-document.getElementById("vis_ss_16_26").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Samsung phones at test point 16 to 26.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>The data is very discrete and there are no obvious relationships, the Rssi is mainly between -81 and -35.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-
-
-
-
-
-<div id="vis_rp_1" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_1.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 1",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-       
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_1", yourVlSpec);
-document.getElementById("vis_rp_1").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 1.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>During the 10 minutes of data collection, the CMX remained at a RSSI level around -57, but reported very different position coordinates.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-<div id="vis_rp_2" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_2.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 2",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-       
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_2", yourVlSpec);
-document.getElementById("vis_rp_2").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 2.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>Test point 2 showed similar results to test point 1,During the 10 minutes of data collection, the CMX remained at a RSSI level around -57, but reported very different position coordinates.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_rp_3" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_3.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 3",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-       
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_3", yourVlSpec);
-document.getElementById("vis_rp_3").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 3.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>Test point 3 showed similar results to test point 1,During the 10 minutes of data collection, the CMX remained at a RSSI level around -57, but reported very different position coordinates.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_rp_4" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_4.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 4",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-       
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_4", yourVlSpec);
-document.getElementById("vis_rp_2").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 4.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>Test point 4 showed similar results to test point 1,During the 10 minutes of data collection, the CMX remained at a RSSI level around -57, but reported very different position coordinates.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_rp_5" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_5.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 5",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_5", yourVlSpec);
-document.getElementById("vis_rp_5").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 5.</td>
-</tr>
-
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_rp_6" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_6.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 6",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_6", yourVlSpec);
-document.getElementById("vis_rp_6").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 6.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>Test point 6 showed similar results to test point 1, During the 10 minutes of data collection, the CMX remained at a RSSI level around -57, but reported very different position coordinates.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_rp_7" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_7.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 7",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_7", yourVlSpec);
-document.getElementById("vis_rp_7").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 7.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>Test point 7 showed similar results to test point 1,During the 10 minutes of data collection, the CMX remained at a RSSI level around -57, but reported very different position coordinates.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_rp_8" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_8.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 8",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_8", yourVlSpec);
-document.getElementById("vis_rp_8").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 8.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>Test point 8 showed similar results to test point 1, During the 10 minutes of data collection, the CMX remained at a RSSI level around -55, but reported very different position coordinates..</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_rp_10" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_10.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 10",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_10", yourVlSpec);
-document.getElementById("vis_rp_10").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 10.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>Test point 10 showed similar results to test point 1,During the 10 minutes of data collection, the CMX remained at a RSSI level around -63, but reported very different position coordinates..</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-
-<div id="vis_rp_11" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_11.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 11",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_11", yourVlSpec);
-document.getElementById("vis_rp_11").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 11.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>Test point 11 showed similar results to test point 1, During the 10 minutes of data collection, the CMX remained at a RSSI level around -61, but reported very different position coordinates.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_rp_12" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_12.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 12",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_12", yourVlSpec);
-document.getElementById("vis_rp_12").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 12.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>Test point 12 showed similar results to test point 1, During the 10 minutes of data collection, the CMX remained at a RSSI level around -51, but reported very different position coordinates.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-
-<div id="vis_rp_13" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_13.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 13",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_13", yourVlSpec);
-document.getElementById("vis_rp_13").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 13.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>Test point 13 showed similar results to test point 1,During the 10 minutes of data collection, the CMX remained at a RSSI level around -57, but reported very different position coordinates..</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_rp_14" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_14.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 14",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "quantitative", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_14", yourVlSpec);
-document.getElementById("vis_rp_14").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 14.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>Test point 14 showed similar results to test point 1,During the 10 minutes of data collection, the CMX remained at a RSSI level around -47, but reported very different position coordinates.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_rp_15" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_15.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 15",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_15", yourVlSpec);
-document.getElementById("vis_rp_15").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 15.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>Test point 15 showed similar results to test point 1,During the 10 minutes of data collection, the CMX remained at a RSSI level around -49, but reported very different position coordinates.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_rp_16" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_16.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 16",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_16", yourVlSpec);
-document.getElementById("vis_rp_16").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 16.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>eAfter looking at the resulting visualization, we can see that the correlation between Rssi and RMSE is generally negative.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-
-<div id="vis_rp_17" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_17.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 17",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_17", yourVlSpec);
-document.getElementById("vis_rp_17").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 8.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>The results at test point 17 were very stable, with a RSSI of -74 and RMSE of 41.57.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_rp_18" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_18.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 18",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_18", yourVlSpec);
-document.getElementById("vis_rp_18").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 18.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>After looking at the resulting visualization, we can see that the correlation between Rssi and RMSE is generally negative.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_rp_19" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_19.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 19",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_19", yourVlSpec);
-document.getElementById("vis_rp_19").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 19.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>Test point 19 showed similar results to test point 1, with RSSI levels remaining at -79 and -74, reported very different position coordinates, which can be described as the correlation between Rssi and RMSE is generally positive too.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_rp_20" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_20.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 20",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_20", yourVlSpec);
-document.getElementById("vis_rp_20").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 20.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;">Test point 20 showed the results that Rssi remaining at -80 and -63, with RMSE 25.32 and 42.69, 
-  which can be described as the correlation between Rssi and RMSE is generally negative too.</a>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_rp_21" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_21.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 21",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_21", yourVlSpec);
-document.getElementById("vis_rp_21").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 21.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a> Test point 21 showed the results that Rssi remaining at -79 and -61, with RMSE 70 and 7.32, 
-  which can be described as the correlation between Rssi and RMSE is generally positive too.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_rp_22" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_22.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 22",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_22", yourVlSpec);
-document.getElementById("vis_rp_22").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 22.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>The results at test point 22 were very stable, with a Rssi of 32 and RMSE of 18.32.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_rp_23" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_23.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 23",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_23", yourVlSpec);
-document.getElementById("vis_rp_17").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 23.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>The data at test point 23 is scattered, with no discernable pattern.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-<div id="vis_rp_24" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_24.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 24",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_24", yourVlSpec);
-document.getElementById("vis_rp_24").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 24.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>The data at test point 24 is scattered, with no discernable pattern.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-<div id="vis_rp_25" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_25.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 25",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_25", yourVlSpec);
-document.getElementById("vis_rp_25").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 25.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>The data at test point 25 is scattered, with no discernable pattern.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-<div id="vis_rp_26" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_26.csv"},
-  "title": {
-      "text": "Raspberry pi - Test point 26",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-        
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-        
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_26", yourVlSpec);
-document.getElementById("vis_rp_26").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 26.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>	Test point 12 showed similar results to test point 1, with RSSI levels remaining at 80, 88 and 96, reported very different position coordinates.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-
-
-<div id="vis_rp_total" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_total.csv"},
-  "title": {
-      "text": "Raspberry pi - All test points",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-     
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {
-      "aggregate": "count"
-    },
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_total", yourVlSpec);
-document.getElementById("vis_rp_total").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<div id="vis_rp_total_2" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/rp_total.csv"},
-  "title": {
-      "text": "Raspberry pi - All test points",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-     
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_rp_total_2", yourVlSpec);
-document.getElementById("vis_rp_total_2").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at all test points.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>In the scatter plot of the Raspberry PI at all 27 test points, we can see that the CMX reports a minimum RSSI of 32 and a maximum RSSI of 120. From 30 to 80, RSSI is roughly proportional to RMSE, but beyond 80, CMX reports very different coordinates, but RSSI remains the same.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_test_point_1" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_1.csv"},
-  "title": {
-      "text": "Test point 1",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_1", yourVlSpec);
-document.getElementById("vis_test_point_1").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of SamSung phone and Raspberry pi at test point 1,orange is for Samsung phones, blue is for Raspberry pi.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a> For Samsung phones, the minimum RSSI level reported by CMX is -72, the minimum error is 16.94,
-   the maximum RSSI level is -59, and the maximum error is 59.18, RSSI has nothing to do with error. 
-  For the Raspberry pi, the CMX reports have consistently reported a RSSI level around -58, with errors centered between 0.06 and 5.68, RSSI has nothing to do with error. </td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_test_point_2" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_2.csv"},
-  "title": {
-      "text": "Test point 2",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_2", yourVlSpec);
-document.getElementById("vis_test_point_2").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 2.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a> For Samsung phones, CMX reports RSSI at -57 and error at 22. 
-  For the Raspberry pi, the CMX reports have consistently reported RSSI from -57 to -53, with errors mostly centered between 6.12 and 15.</strong></td>
-<td style="vertical-align: top;"></a></td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_test_point_3" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_3.csv"},
-  "title": {
-      "text": "Test point 3",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_3", yourVlSpec);
-document.getElementById("vis_test_point_3").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 3.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>For Samsung phones, the minimum RSSI level reported by CMX is 16, the minimum error is 7.27,
-  the maximum RSSI level is -39, and the maximum error is 50.51, RSSI has nothing to do with error. 
- For the Raspberry pi, the CMX reports have consistently reported a RSSI level of -55, with errors mostly centered between 16.69 and 30.78, RSSI has nothing to do with error. </td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_test_point_4" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_4.csv"},
-  "title": {
-      "text": "Test point 4",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_4", yourVlSpec);
-document.getElementById("vis_test_point_4").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 4.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>For Samsung phones, the minimum RSSI level reported by CMX is -75, the minimum error is 34.59,
-  the maximum RSSI level is -63, and the maximum error is 50.61, RSSI has nothing to do with error. 
- For the Raspberry pi, the CMX reports have consistently reported a RSSI level of -45 mianly, with errors mostly centered between 4.67 and 33.87, RSSI has nothing to do with error. </td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_test_point_5" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_5.csv"},
-  "title": {
-      "text": "Test point 5",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_5", yourVlSpec);
-document.getElementById("vis_test_point_5").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 5.</td>
-</tr>
-<tr>
-<td style="vertical-align: top;"><strong>Insight:</strong></td>
-<td style="vertical-align: top;"></a>For Samsung phones, the minimum RSSI level reported by CMX is -75, the minimum error is 25.52,
-  the maximum RSSI level is -65, and the maximum error is 37.62,RSSI has nothing to do with error. 
- </td>
-</tr>
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_test_point_6" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_6.csv"},
-  "title": {
-      "text": "Test point 6",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_6", yourVlSpec);
-document.getElementById("vis_test_point_6").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 6.</td>
-</tr>
-
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_test_point_7" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_7.csv"},
-  "title": {
-      "text": "Test point 7",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_7", yourVlSpec);
-document.getElementById("vis_test_point_7").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 7.</td>
-</tr>
-
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_test_point_8" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_8.csv"},
-  "title": {
-      "text": "Test point 8",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_8", yourVlSpec);
-document.getElementById("vis_test_point_8").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 8.</td>
-</tr>
-
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_test_point_10" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_10.csv"},
-  "title": {
-      "text": "Test point 10",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_10", yourVlSpec);
-document.getElementById("vis_test_point_10").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 10.</td>
-</tr>
-
-</tbody>
-</table>
-<hr />
-
-
-
-
-<div id="vis_test_point_11" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_11.csv"},
-  "title": {
-      "text": "Test point 11",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_11", yourVlSpec);
-document.getElementById("vis_test_point_11").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 11.</td>
-</tr>
-
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_test_point_12" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_12.csv"},
-  "title": {
-      "text": "Test point 12",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_12", yourVlSpec);
-document.getElementById("vis_test_point_12").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 12.</td>
-</tr>
-
-</tbody>
-</table>
-<hr />
-
-
-
-
-
-<div id="vis_test_point_13" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_13.csv"},
-  "title": {
-      "text": "Test point 13",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_13", yourVlSpec);
-document.getElementById("vis_test_point_13").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 13.</td>
-</tr>
-
-</tbody>
-</table>
-<hr />
-
-
-
-
-<div id="vis_test_point_14" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_14.csv"},
-  "title": {
-      "text": "Test point 14",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_14", yourVlSpec);
-document.getElementById("vis_test_point_14").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 14.</td>
-</tr>
-
-</tbody>
-</table>
-<hr />
-
-
-
-
-<div id="vis_test_point_15" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_15.csv"},
-  "title": {
-      "text": "Test point 15",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_15", yourVlSpec);
-document.getElementById("vis_test_point_15").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 15.</td>
-</tr>
-
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_test_point_16" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_16.csv"},
-  "title": {
-      "text": "Test point 16",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_16", yourVlSpec);
-document.getElementById("vis_test_point_16").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 16.</td>
-</tr>
-
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_test_point_17" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_17.csv"},
-  "title": {
-      "text": "Test point 17",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_17", yourVlSpec);
-document.getElementById("vis_test_point_17").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 17.</td>
-</tr>
-
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_test_point_18" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_18.csv"},
-  "title": {
-      "text": "Test point 18",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      "bin": {"maxbins": 20},
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      "bin": {"maxbins": 20},
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_18", yourVlSpec);
-document.getElementById("vis_test_point_18").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 18.</td>
-</tr>
-
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_test_point_19" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_19.csv"},
-  "title": {
-      "text": "Test point 19",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      "bin": {"maxbins": 20},
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      "bin": {"maxbins": 20},
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_19", yourVlSpec);
-document.getElementById("vis_test_point_19").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 19.</td>
-</tr>
-
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_test_point_20" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_20.csv"},
-  "title": {
-      "text": "Test point 20",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      "bin": {"maxbins": 20},
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      "bin": {"maxbins": 20},
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_20", yourVlSpec);
-document.getElementById("vis_test_point_20").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 20.</td>
-</tr>
-
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_test_point_21" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_21.csv"},
-  "title": {
-      "text": "Test point 21",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      "bin": {"maxbins": 20},
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      "bin": {"maxbins": 20},
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_21", yourVlSpec);
-document.getElementById("vis_test_point_21").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 21.</td>
-</tr>
-
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_test_point_22" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_22.csv"},
-  "title": {
-      "text": "Test point 22",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      "bin": {"maxbins": 20},
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      "bin": {"maxbins": 20},
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_22", yourVlSpec);
-document.getElementById("vis_test_point_22").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 22.</td>
-</tr>
-
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_test_point_23" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_23.csv"},
-  "title": {
-      "text": "Test point 23",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      "bin": {"maxbins": 20},
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      "bin": {"maxbins": 20},
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_23", yourVlSpec);
-document.getElementById("vis_test_point_23").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 23.</td>
-</tr>
-
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_test_point_24" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_24.csv"},
-  "title": {
-      "text": "Test point 24",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      "bin": {"maxbins": 20},
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      "bin": {"maxbins": 20},
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_24", yourVlSpec);
-document.getElementById("vis_test_point_18").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 24.</td>
-</tr>
-
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_test_point_25" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_25.csv"},
-  "title": {
-      "text": "Test point 25",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      "bin": {"maxbins": 20},
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      "bin": {"maxbins": 20},
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_25", yourVlSpec);
-document.getElementById("vis_test_point_18").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 25.</td>
-</tr>
-
-</tbody>
-</table>
-<hr />
-
-
-
-<div id="vis_test_point_26" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/test_point_26.csv"},
-  "title": {
-      "text": "Test point 26",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-      "bin": {"maxbins": 20},
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      "bin": {"maxbins": 20},
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_test_point_26", yourVlSpec);
-document.getElementById("vis_test_point_18").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of Raspberry pi at test point 26.</td>
-</tr>
-
-</tbody>
-</table>
-<hr />
-
-
-<div id="vis_total_1" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_1_15_rp_total.csv"},
-  "title": {
-      "text": "Test point All - 1",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-     
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_total_1", yourVlSpec);
-document.getElementById("vis_total_1").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of SamSung Phone at test point 1 to test point 15, and Raspberry pi at all test points.</td>
-</tr>
-
-<tr>
-  <td style="vertical-align: top;"><strong>Insight:</strong></td>
-  <td style="vertical-align: top;">From the figure, we can observe that RSSI has nothing to do with error. </a></td>
-  </tr>
-
-
-</tbody>
-</table>
-<hr />
-
-
-<div id="vis_total_2" class="container"></div>
-<script type='text/javascript'>
-   var yourVlSpec =  {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/zhecui-zc/data/master/API_data/data_with_precision/fenkai/ss_16_26_rp_total.csv"},
-  "title": {
-      "text": "Test point All - 2",
-      "anchor": "middle"
-      },
-  "mark": "circle",
-  "width": 500,
-  "height": 500,
-  "encoding": {
-    "x": {
-     
-      "field": "maxDetectedRssi"
-    },
-    "y": {
-      
-      "field": "RMSE"
-    },
-    "size": {"aggregate": "count"},
-    "color": {"field": "macAddress"},
-    "tooltip":[
-      {"field": "macAddress",
-      "type": "nominal",
-      "title": "Devcice"},
-      {"field": "maxDetectedRssi", "type": "nominal", "title": "Rssi"},
-      {"field": "RMSE", "type": "nominal", "title": "RMSE"},
-      {"field": "CMX_lastSeen", "type": "nominal", "title": "CMX_lastSeen"},
-      {"aggregate": "count", "type": "nominal", "title": "Count"}]
-  
-  } } 
-vegaEmbed("#vis_total_2", yourVlSpec);
-document.getElementById("vis_total_2").style.padding = "20px 10px 20px 75px";
-  </script>
-<hr />
-
-<table style="width: 850px;" cellspacing="5" cellpadding="5">
-<tbody>
-<tr>
-<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
-<td style="vertical-align: top;">This scatter chart shows the relationship between RSSI and error of SamSung Phone at test point 1 to test point 15, and Raspberry pi at all test points.</td>
-</tr>
-<tr>
-  <td style="vertical-align: top;"><strong>Insight:</strong></td>
-  <td style="vertical-align: top;">From the figure, we can observe that RSSI has nothing to do with error.</a></td>
-  </tr>
-
-
-</tbody>
-</table>
-<hr />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
